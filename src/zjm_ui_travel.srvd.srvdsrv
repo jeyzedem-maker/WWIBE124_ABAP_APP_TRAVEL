@@ -1,0 +1,4 @@
+@EndUserText.label: 'UI Travel'
+define service ZJM_UI_TRAVEL {
+  expose ZJM_C_Travels as Travel;
+}
