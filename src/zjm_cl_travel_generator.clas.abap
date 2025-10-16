@@ -20,9 +20,15 @@ CLASS zjm_cl_travel_generator IMPLEMENTATION.
     DATA ls_travel TYPE zjm_travel.
     DATA lt_travel TYPE TABLE OF zjm_travel.
 
+    DATA ls_booking TYPE zjm_booking.
+    DATA lt_booking TYPE TABLE OF zjm_booking.
+
     " Delete Travels
     DELETE FROM zjm_travel.
     out->write( |Deleted Travels: { sy-dbcnt }| ).
+
+    DELETE FROM zjm_booking.
+    out->write( |Deleted Bookings: { sy-dbcnt }| ).
 
     " Create Travels
 
@@ -45,6 +51,18 @@ CLASS zjm_cl_travel_generator IMPLEMENTATION.
 
     APPEND ls_travel TO lt_travel.
 
+    ls_booking-booking_date = '20230807'.
+    ls_booking-booking_id = '3861'.
+    ls_booking-booking_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    ls_booking-carrier_id = 'LH'.
+    ls_booking-client = sy-mandt.
+    ls_booking-connection_id = '0300'.
+    ls_booking-currency_code = 'EUR'.
+    ls_booking-flight_date = ls_travel-begin_date.
+    ls_booking-flight_price = '300'.
+    ls_booking-travel_uuid = ls_travel-travel_uuid.
+    APPEND ls_booking to lt_booking.
+
     ls_travel-agency_id = '000023'.
     ls_travel-begin_date = '20240707'.
     ls_travel-booking_fee = '150.00'.
@@ -63,6 +81,20 @@ CLASS zjm_cl_travel_generator IMPLEMENTATION.
     GET TIME STAMP FIELD ls_travel-last_changed_at.
 
     APPEND ls_travel TO lt_travel.
+
+    ls_booking-booking_date = '20230807'.
+    ls_booking-booking_id = '2947'.
+    ls_booking-booking_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    ls_booking-carrier_id = 'LH'.
+    ls_booking-client = sy-mandt.
+    ls_booking-connection_id = '0350'.
+    ls_booking-currency_code = 'EUR'.
+    ls_booking-flight_date = ls_travel-begin_date.
+    ls_booking-flight_price = '304.00'.
+    ls_booking-travel_uuid = ls_travel-travel_uuid.
+    APPEND ls_booking to lt_booking.
+
+
 
     ls_travel-agency_id = '000045'.
     ls_travel-begin_date = '20221231'.
@@ -83,6 +115,31 @@ CLASS zjm_cl_travel_generator IMPLEMENTATION.
 
     APPEND ls_travel TO lt_travel.
 
+    ls_booking-booking_date = '20221204'.
+    ls_booking-booking_id = '0021'.
+    ls_booking-booking_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    ls_booking-carrier_id = 'LH'.
+    ls_booking-client = sy-mandt.
+    ls_booking-connection_id = '0400'.
+    ls_booking-currency_code = 'USD'.
+    ls_booking-flight_date = ls_travel-begin_date.
+    ls_booking-flight_price = '160.55'.
+    ls_booking-travel_uuid = ls_travel-travel_uuid.
+    APPEND ls_booking to lt_booking.
+
+    ls_booking-booking_date = '20221204'.
+    ls_booking-booking_id = '0095'.
+    ls_booking-booking_uuid = cl_system_uuid=>create_uuid_x16_static( ).
+    ls_booking-carrier_id = 'LH'.
+    ls_booking-client = sy-mandt.
+    ls_booking-connection_id = '0401'.
+    ls_booking-currency_code = 'USD'.
+    ls_booking-flight_date = ls_travel-end_date.
+    ls_booking-flight_price = '150.46'.
+    ls_booking-travel_uuid = ls_travel-travel_uuid.
+    APPEND ls_booking to lt_booking.
+
+
     ls_travel-agency_id = '000045'.
     ls_travel-begin_date = '20231101'.
     ls_travel-booking_fee = '0.00'.
@@ -102,9 +159,12 @@ CLASS zjm_cl_travel_generator IMPLEMENTATION.
 
     APPEND ls_travel TO lt_travel.
 
-    INSERT zls_travel FROM TABLE @lt_travel.
+    INSERT zjm_travel FROM TABLE @lt_travel.
     out->write( |INSERTED Travels: { sy-dbcnt } | ).
 
-  ENDMETHOD.
+    INSERT zjm_booking FROM TABLE @lt_booking.
+    out->write( |INSERTED Travels: { sy-dbcnt } | ).
+
+    ENDMETHOD.
 
 ENDCLASS.
