@@ -3,11 +3,11 @@
 {
 "FROM":
 [
-"ZJM_TRAVEL"
+"ZJM_BOOKING"
 ],
 "ASSOCIATED":
 [
-"ZJM_R_BOOKING"
+"ZJM_R_TRAVELS"
 ],
 "BASE":
 [],

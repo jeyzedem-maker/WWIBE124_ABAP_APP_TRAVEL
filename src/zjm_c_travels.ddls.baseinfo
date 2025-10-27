@@ -6,9 +6,14 @@
 "ZJM_R_TRAVELS"
 ],
 "ASSOCIATED":
-[],
+[
+"ZJM_C_BOOKINGS",
+"ZJM_R_BOOKING"
+],
 "BASE":
-[],
+[
+"ZJM_R_TRAVELS"
+],
 "ANNO_REF":
 [],
 "SCALAR_FUNCTION":

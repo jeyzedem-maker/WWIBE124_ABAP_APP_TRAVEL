@@ -13,7 +13,8 @@ annotate entity ZJM_C_Travels
 
 @UI.facet: [
 { position: 10, targetQualifier: 'TravelDetails', label: 'Travel Details', type: #FIELDGROUP_REFERENCE },
-{ position: 20, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
+{ position: 20, targetElement: '_booking', label: 'Bookings', type: #LINEITEM_REFERENCE },
+{ position: 30, targetQualifier: 'AdminData', label: 'Administrative Data', type: #FIELDGROUP_REFERENCE }
 ]
 
     @UI.fieldGroup: [{ position: 10, qualifier: 'AdminData' }]
